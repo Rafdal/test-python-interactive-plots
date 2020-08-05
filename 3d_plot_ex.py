@@ -1,35 +1,29 @@
 # This import registers the 3D projection, but is otherwise unused.
 from mpl_toolkits.mplot3d import Axes3D  # noqa: F401 unused import
 
+import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Fixing random state for reproducibility
-np.random.seed(19680801)
-
-
-def randrange(n, vmin, vmax):
-    '''
-    Helper function to make an array of random numbers having shape (n, )
-    with each number distributed Uniform(vmin, vmax).
-    '''
-    return (vmax - vmin)*np.random.rand(n) + vmin
+noisy = pd.read_csv('NOISY_DATASET.CSV', sep=',', decimal='.')
+stable = pd.read_csv('STABLE_DATASET.CSV', sep=',', decimal='.')
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
-n = 100
+xn = noisy.values[:,0]
+yn = noisy.values[:,1]
+zn = noisy.values[:,2]
 
-# For each set of style and range settings, plot n random points in the box
-# defined by x in [23, 32], y in [0, 100], z in [zlow, zhigh].
-for m, zlow, zhigh in [('o', -50, -25), ('^', -30, -5)]:
-    xs = randrange(n, 23, 32)
-    ys = randrange(n, 0, 100)
-    zs = randrange(n, zlow, zhigh)
-    ax.scatter(xs, ys, zs, marker=m)
+xs = stable.values[:,0]
+ys = stable.values[:,1]
+zs = stable.values[:,2]
 
-ax.set_xlabel('X Label')
-ax.set_ylabel('Y Label')
-ax.set_zlabel('Z Label')
+ax.scatter(xn, yn, zn, color = 'red')
+ax.scatter(xs, ys, zs, color = 'blue')
+
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
 
 plt.show()
