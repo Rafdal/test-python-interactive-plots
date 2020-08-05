@@ -36,9 +36,6 @@ plt.tick_params(labelbottom=False, labelleft=False)
 
 
 
-
-
-
 import tensorflow as tf
 
 from matplotlib import animation
