@@ -10,3 +10,10 @@ Asi como tambien analizar el espectro completo de frecuencias que genero la **FF
 
 ## TO-DO
 En el otro repositorio (El que usa Keras para el machine learning). Queda probar algun dataset para resolver un problema de clasificacion, familiarizarme un poco con la libreria y los casos de uso. Y por ultimo meterle el dataset que genere "COMPLETE_DATASET.CSV" para entrenar la red que voy a hardcodear en la arduino.
+
+
+## ANEXOS
+
+https://machinelearningmastery.com/multi-class-classification-tutorial-keras-deep-learning-library/
+https://machinelearningmastery.com/tutorial-first-neural-network-python-keras/
+https://www.pluralsight.com/guides/classification-keras
