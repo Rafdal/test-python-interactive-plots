@@ -15,5 +15,7 @@ En el otro repositorio (El que usa Keras para el machine learning). Queda probar
 ## ANEXOS
 
 https://machinelearningmastery.com/multi-class-classification-tutorial-keras-deep-learning-library/
+
 https://machinelearningmastery.com/tutorial-first-neural-network-python-keras/
+
 https://www.pluralsight.com/guides/classification-keras
