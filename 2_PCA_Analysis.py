@@ -7,24 +7,18 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.datasets import load_iris
 from micromlgen import port
 
-X = load_iris().data
-pca = PCA(n_components=2, whiten=False).fit(X)
-
-print(port(pca))
-
-
 #cargamos los datos de entrada
 df = pd.read_csv("COMPLETE_DATASET.csv")
 
 # Separo el dataframe en los datos (X) y los target (Y)
-X = df.iloc[:,0:128]
-Y = df.iloc[:,129:132]
+X = df.iloc[:,0:256]
+Y = df.iloc[:,257:260]
 print(Y)
 
 # Normalización
 X_std = StandardScaler().fit_transform(X, y=Y)
 
-pca = PCA(n_components=2, whiten=True)
+pca = PCA(n_components=2, whiten=False)
 principalComponents = pca.fit_transform(X, y=Y)
 
 print(pca.n_components)
