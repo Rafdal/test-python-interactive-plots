@@ -10,6 +10,9 @@ df_fan2 = pd.read_csv('FAN_2.CSV', sep=',', decimal='.')
 df_fan3 = pd.read_csv('FAN_3.CSV', sep=',', decimal='.')
 df_stable = pd.read_csv('STABLE.CSV', sep=',', decimal='.')
 
+xyz_stable = pd.read_csv('XYZ_STABLE.CSV', sep=',', decimal='.')
+xyz_fan3 = pd.read_csv('XYZ_FAN3.CSV', sep=',', decimal='.')
+
 # df_stable.columns = list(range(0,128)) # * Si los nombres de columna vienen bien, no hace falta
 # df_noisy.columns = list(range(0,128))  # *
 # df_wave.columns = list(range(0,128))  # *
@@ -23,15 +26,15 @@ level2 = ['fan2'] * 50
 level3 = ['fan3'] * 50
 
 
-df_fan1['speed'] = one
+xyz_stable['speed'] = zero
 
-df_fan2['speed'] = two
+xyz_fan3['speed'] = one
 
-df_fan3['speed'] = three
+# df_fan3['speed'] = three
 
-df_stable['speed'] = zero
+# df_stable['speed'] = zero
 
-result = pd.concat([df_fan1,df_fan2,df_fan3,df_stable], ignore_index = True) #, keys=['x', 'y', 'z', 'type']
+result = pd.concat([xyz_stable,xyz_fan3], ignore_index = True) #, keys=['x', 'y', 'z', 'type']
 print(result)
 
 result.to_csv('COMPLETE_DATASET.csv') # ! Crear archivo [.CSV]

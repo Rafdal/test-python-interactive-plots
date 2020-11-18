@@ -12,8 +12,8 @@ from micromlgen import port
 df = pd.read_csv("COMPLETE_DATASET.csv")
 
 # Separo el dataframe en los datos (X) y los target (Y)
-X = df.iloc[:,0:256]
-Y = df.iloc[:,257]
+X = df.iloc[:,0:384]
+Y = df.iloc[:,385]
 print(Y)
 
 # Normalización
@@ -76,21 +76,21 @@ x1 = finalDf.loc[finalDf['speed']==1, 'PC1']
 y1 = finalDf.loc[finalDf['speed']==1, 'PC2']
 z1 = finalDf.loc[finalDf['speed']==1, 'PC3']
 
-x2 = finalDf.loc[finalDf['speed']==2, 'PC1']
-y2 = finalDf.loc[finalDf['speed']==2, 'PC2']
-z2 = finalDf.loc[finalDf['speed']==2, 'PC3']
+# x2 = finalDf.loc[finalDf['speed']==2, 'PC1']
+# y2 = finalDf.loc[finalDf['speed']==2, 'PC2']
+# z2 = finalDf.loc[finalDf['speed']==2, 'PC3']
 
-x3 = finalDf.loc[finalDf['speed']==3, 'PC1']
-y3 = finalDf.loc[finalDf['speed']==3, 'PC2']
-z3 = finalDf.loc[finalDf['speed']==3, 'PC3']
+# x3 = finalDf.loc[finalDf['speed']==3, 'PC1']
+# y3 = finalDf.loc[finalDf['speed']==3, 'PC2']
+# z3 = finalDf.loc[finalDf['speed']==3, 'PC3']
 
 alpha = 0.3
 size = 20
 
 ax.scatter(x0, y0, z0, color = 'grey', s=size, alpha = alpha)
-ax.scatter(x1, y1, z1, color = 'red', s=size, alpha = alpha)
-ax.scatter(x2, y2, z2, color = 'red', s=size, alpha = alpha)
-ax.scatter(x3, y3, z3, color = 'red', s=size, alpha = alpha)
+ax.scatter(x1, y1, z1, color = 'blue', s=size, alpha = alpha)
+# ax.scatter(x2, y2, z2, color = 'yellow', s=size, alpha = alpha)
+# ax.scatter(x3, y3, z3, color = 'red', s=size, alpha = alpha)
 
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
