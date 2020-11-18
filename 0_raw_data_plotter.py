@@ -7,6 +7,7 @@ df_fan1 = pd.read_csv('FAN_1.CSV', sep=',', decimal='.')
 df_fan2 = pd.read_csv('FAN_2.CSV', sep=',', decimal='.')
 df_fan3 = pd.read_csv('FAN_3.CSV', sep=',', decimal='.')
 df_noisy = pd.read_csv('NOISY.CSV', sep=',', decimal='.')
+df_dataset = pd.read_csv('DATASET.CSV', sep=',', decimal='.')
 
 # print(df_stable)
 # print(df_wave)
@@ -17,6 +18,7 @@ x1 = df_fan1.T.values[:,:]
 x2 = df_fan2.T.values[:,:]
 x3 = df_fan3.T.values[:,:]
 x4 = df_noisy.T.values[:,:]
+x5 = df_dataset.T.values[:,:]
 
 # print(x0)
 # print(x1)
@@ -31,9 +33,9 @@ x4 = df_noisy.T.values[:,:]
 plt.style.use('dark_background')
 
 plt.xlabel("Mediciones")
-width = 0.8
+width = 1
 alpha = 0.05
 plt.plot(x1, linewidth = width, alpha = alpha, color= 'red')
-plt.plot(x2, linewidth = width, alpha = alpha, color= 'yellow')
-plt.plot(x3, linewidth = width, alpha = alpha, color= 'red')
+# plt.plot(x2, linewidth = width, alpha = alpha, color= 'yellow')
+plt.plot(x5, linewidth = width, alpha = alpha, color= 'yellow')
 plt.show()
