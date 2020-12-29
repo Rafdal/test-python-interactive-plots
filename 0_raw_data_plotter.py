@@ -17,6 +17,12 @@ xyz_ST = xyz_stable.T.values[:,:]
 xyz_fan3 = pd.read_csv('XYZ_FAN3.CSV', sep=',', decimal='.') # * FFT + Filtro
 xyz_f3 = xyz_fan3.T.values[:,:]
 
+mpu_stable = pd.read_csv('MPU6050_stable.CSV', sep=',', decimal='.')
+x = mpu_stable.values[:,0]
+y = mpu_stable.values[:,1]
+z = mpu_stable.values[:,2]
+
+
 # print(df_stable)
 # print(df_wave)
 # print(df_noisy)
@@ -32,8 +38,8 @@ plt.style.use('dark_background')
 
 plt.xlabel("Mediciones")
 width = 1
-alpha = 0.1
-plt.plot(xyz_ST, linewidth = width, alpha = alpha, color= 'red')
-# plt.plot(xyz_f3, linewidth = width, alpha = alpha, color= 'yellow')
-# plt.plot(xFan3, linewidth = width, alpha = alpha, color= 'yellow')
+alpha = 1
+plt.plot(mpu_stable, linewidth = width, alpha = alpha, color= 'red')
+# plt.plot(y, linewidth = width, alpha = alpha, color= 'yellow')
+# plt.plot(z, linewidth = width, alpha = alpha, color= 'yellow')
 plt.show()
