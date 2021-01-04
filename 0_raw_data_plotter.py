@@ -1,30 +1,46 @@
-from scipy.fft import fft, ifft
+from scipy import signal
+from scipy.fft import fft, fftshift, fftfreq
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
+import numpy as np
 
-root = Path('mov')
 
-# df_stable = pd.read_csv('STABLE.CSV', sep=',', decimal='.')
-# df_fan1 = pd.read_csv('FAN_1.CSV', sep=',', decimal='.')
-# df_fan2 = pd.read_csv('FAN_2.CSV', sep=',', decimal='.')
-# df_fan3 = pd.read_csv('FAN_3.CSV', sep=',', decimal='.')
-# df_noisy = pd.read_csv('NOISY.CSV', sep=',', decimal='.')
-# raw_stable = pd.read_csv('raw_STABLE.CSV', sep=',', decimal='.')
-# raw_fan3 = pd.read_csv('raw_FAN3.CSV', sep=',', decimal='.')
-# filtered_fan3 = pd.read_csv('filtered_FAN3.CSV', sep=',', decimal='.')
-# filtered_stable = pd.read_csv('filtered_STABLE.CSV', sep=',', decimal='.')
+def plotFourier(data, color = 'red', alpha = 1, linewidth = 1, freq=1/1000, samples=512):
+    hann = signal.windows.hann(samples)
 
-# xyz_stable = pd.read_csv('XYZ_STABLE.CSV', sep=',', decimal='.') # * FFT + Filtro
-# xyz_ST = xyz_stable.T.values[:,:]
-# xyz_fan3 = pd.read_csv('XYZ_FAN3.CSV', sep=',', decimal='.') # * FFT + Filtro
-# xyz_f3 = xyz_fan3.T.values[:,:]
+    windowed = hann*data
 
-mpu_stable = pd.read_csv(root / 'MOV4.CSV', sep=',', decimal='.')
-x = mpu_stable.values[:,0]
-y = mpu_stable.values[:,1]
-z = mpu_stable.values[:,2]
+    yf = fft(windowed)
+    xf = fftfreq(samples, freq)[:samples//2]
 
+    plt.plot(xf, 2.0/samples * np.abs(yf[0:samples//2]), linewidth = width, alpha = alpha, color = color)
+    pass
+
+
+movdir = Path('mov')
+flojdir = Path('floj')
+pesodir = Path('peso')
+
+
+# for i in range(450):
+# 	filename = "MOV" + str(i) + ".CSV"
+# 	mpu_mov = pd.read_csv(movdir / filename, sep=',', decimal='.')
+# 	print(mpu_mov)
+# 	break
+# 	pass
+
+mpu_peso = pd.read_csv(pesodir / 'PESO0.CSV', sep=',', decimal='.')
+mpu_mov = pd.read_csv(movdir / 'MOV0.CSV', sep=',', decimal='.')
+
+
+xm = mpu_mov.values[:,0]
+ym = mpu_mov.values[:,1]
+zm = mpu_mov.values[:,2]
+
+xp = mpu_peso.values[:,0]
+yp = mpu_peso.values[:,1]
+zp = mpu_peso.values[:,2]
 
 # print(df_wave)
 # print(df_noisy)
@@ -37,11 +53,23 @@ z = mpu_stable.values[:,2]
 # xFan3 = filtered_fan3.values[:,:]
 
 plt.style.use('dark_background')
-
 plt.xlabel("Mediciones")
 width = 1
 alpha = 1
-plt.plot(x, linewidth = width, alpha = alpha, color= 'red')
-plt.plot(y, linewidth = width, alpha = alpha, color= 'green')
-plt.plot(z, linewidth = width, alpha = alpha, color= 'blue')
+
+# plotFourier(xm, 'red', 0.5)
+# plotFourier(xp, 'orange',0.5)
+plotFourier(yp, 'blue',0.5)
+plotFourier(ym, 'lightblue',0.5)
+
+# plt.plot(xp, linewidth = width, alpha = alpha, color= 'red')
+# plt.plot(yp, linewidth = width, alpha = alpha, color= 'green')
+# plt.plot(zp, linewidth = width, alpha = alpha, color= 'blue')
+
+# plt.plot(xm, linewidth = width, alpha = alpha, color= 'orange')
+# plt.plot(ym, linewidth = width, alpha = alpha, color= 'yellow')
+# plt.plot(zm, linewidth = width, alpha = alpha, color= 'lightblue')
+
+
 plt.show()
+
